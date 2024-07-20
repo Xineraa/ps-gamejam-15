@@ -8,8 +8,15 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     public float Speed = 30f;
+    public float gravity = 1f;
     float Horizontal = 0f;
     bool Jump = false;
+
+    private Rigidbody2D rb;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,5 +33,10 @@ public class PlayerMovement : MonoBehaviour
     {
         controller.Move(Horizontal * Time.deltaTime, false, Jump);
         Jump = false;
+    }
+
+    public void SetGravity(float gravity)
+    {
+        rb.gravityScale = gravity;
     }
 }

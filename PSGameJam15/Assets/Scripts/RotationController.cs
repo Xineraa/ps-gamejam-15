@@ -10,14 +10,14 @@ public class RotationController : MonoBehaviour
     [SerializeField]
     private float distToShow = 5f;
 
-    private SpriteRenderer renderer;
+    private SpriteRenderer sprRenderer;
     public GameObject lampObject;
 
     private bool rotating = false;
 
     private void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        sprRenderer = GetComponent<SpriteRenderer>();
         lampObject = transform.parent.gameObject;
     }
 
@@ -33,10 +33,10 @@ public class RotationController : MonoBehaviour
         float dist = Vector2.Distance(mouseWorldPos, lampObject.transform.position);
         if (dist < distToShow || rotating == true)
         {
-            renderer.enabled = true;
+            sprRenderer.enabled = true;
         } else
         {
-            renderer.enabled = false;
+            sprRenderer.enabled = false;
         }
 
         if (rotating)

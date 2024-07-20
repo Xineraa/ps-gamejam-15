@@ -6,31 +6,46 @@ public class LightEffects : MonoBehaviour
 
 {
     public PlayerMovement player;
-    public float LightSpeed = 30f;
+    public EffectConstants effectConstants;
 
-    // Start is called before the first frame update
-    void Start()
+    public enum Effect
     {
-        
+        Speed,
+        LowGravity,
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    public Effect effect;
 
-    }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "Player")
+        switch (effect)
         {
-            player.Speed = player.Speed+LightSpeed;
+            case Effect.Speed:
+            {
+                player.Speed += effectConstants.speed;
+                break;
+            }
+            case Effect.LowGravity:
+            {
+                player.SetGravity(effectConstants.lowGravity);
+                break;
+            }
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.name == "Player")
+        switch (effect)
         {
-            player.Speed = player.Speed-LightSpeed;
+            case Effect.Speed:
+            {
+                player.Speed -= effectConstants.speed;
+                break;
+            }
+            case Effect.LowGravity:
+            {
+                player.SetGravity(effectConstants.normalGravity);
+                break;
+            }
         }
     }
 }
