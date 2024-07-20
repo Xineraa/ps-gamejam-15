@@ -11,7 +11,7 @@ public class LightEffects : MonoBehaviour
     public enum Effect
     {
         Speed,
-        LowGravity,
+        NoGravity,
     }
 
     public Effect effect;
@@ -25,9 +25,12 @@ public class LightEffects : MonoBehaviour
                 player.Speed += effectConstants.speed;
                 break;
             }
-            case Effect.LowGravity:
+            case Effect.NoGravity:
             {
-                player.SetGravity(effectConstants.lowGravity);
+                if (other.gameObject != null)
+                {
+                    other.gameObject.GetComponent<Rigidbody2D>().gravityScale = effectConstants.noGravity;
+                }
                 break;
             }
         }
@@ -41,9 +44,12 @@ public class LightEffects : MonoBehaviour
                 player.Speed -= effectConstants.speed;
                 break;
             }
-            case Effect.LowGravity:
+            case Effect.NoGravity:
             {
-                player.SetGravity(effectConstants.normalGravity);
+                if (other.gameObject != null)
+                {
+                    other.gameObject.GetComponent<Rigidbody2D>().gravityScale = effectConstants.normalGravity;
+                }
                 break;
             }
         }

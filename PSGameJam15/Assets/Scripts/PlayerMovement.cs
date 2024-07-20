@@ -34,9 +34,4 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(Horizontal * Time.deltaTime, false, Jump);
         Jump = false;
     }
-
-    public void SetGravity(float gravity)
-    {
-        rb.gravityScale = gravity;
-    }
 }
