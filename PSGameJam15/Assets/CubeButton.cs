@@ -15,6 +15,11 @@ public class CubeButton : MonoBehaviour
     {
         if (canPress && Input.GetKeyDown(KeyCode.E))
         {
+            var exists = FindFirstObjectByType(typeof(GameObject));
+            if (exists)
+            {
+                Destroy(exists);
+            }
             GameObject spawnedCube = Instantiate(cube, spawnPoint.position, Quaternion.identity);
             spawnedCube.GetComponent<Rigidbody2D>().AddForce(speed);
             onCooldown = true;
@@ -23,7 +28,7 @@ public class CubeButton : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         canPress = onCooldown ? false : true;
     }
