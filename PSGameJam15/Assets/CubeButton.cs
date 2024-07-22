@@ -7,6 +7,7 @@ public class CubeButton : MonoBehaviour
     public Transform spawnPoint;
     public GameObject cube;
     public float cooldown = 2f;
+    public Vector2 speed;
     private bool canPress;
     private bool onCooldown = false;
 
@@ -14,7 +15,8 @@ public class CubeButton : MonoBehaviour
     {
         if (canPress && Input.GetKeyDown(KeyCode.E))
         {
-            Instantiate(cube, spawnPoint.position, Quaternion.identity);
+            GameObject spawnedCube = Instantiate(cube, spawnPoint.position, Quaternion.identity);
+            spawnedCube.GetComponent<Rigidbody2D>().AddForce(speed);
             onCooldown = true;
             canPress = false;
             Invoke("ResetCooldown", cooldown);

@@ -55,7 +55,6 @@ public class RotationController : MonoBehaviour
 
     private void RotateLamp(Vector2 mouseWorldPos)
     {
-        Debug.Log(mouseWorldPos);
         Vector2 lampPos = lampObject.transform.position;
         Vector2 positionDiff = mouseWorldPos - lampPos;
         Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, -90) * positionDiff;

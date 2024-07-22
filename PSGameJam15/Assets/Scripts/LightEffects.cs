@@ -3,55 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LightEffects : MonoBehaviour
-
 {
-    public PlayerMovement player;
-    public EffectConstants effectConstants;
-
     public enum Effect
     {
+        None,
         Speed,
         NoGravity,
+        JumpBoost,
+        ReverseGravity,
     }
 
     public Effect effect;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        switch (effect)
+        EffectObject effectObject = other.GetComponent<EffectObject>();
+        if (effectObject != null )
         {
-            case Effect.Speed:
-            {
-                player.Speed += effectConstants.speed;
-                break;
-            }
-            case Effect.NoGravity:
-            {
-                if (other.gameObject != null)
-                {
-                    other.gameObject.GetComponent<Rigidbody2D>().gravityScale = effectConstants.noGravity;
-                }
-                break;
-            }
+            effectObject.SetEffect(effect);
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        switch (effect)
+        EffectObject effectObject = other.GetComponent<EffectObject>();
+        if (effectObject != null)
         {
-            case Effect.Speed:
-            {
-                player.Speed -= effectConstants.speed;
-                break;
-            }
-            case Effect.NoGravity:
-            {
-                if (other.gameObject != null)
-                {
-                    other.gameObject.GetComponent<Rigidbody2D>().gravityScale = effectConstants.normalGravity;
-                }
-                break;
-            }
+            effectObject.RemoveEffect(effect);
         }
     }
 }
