@@ -95,7 +95,6 @@ public class EffectObject : MonoBehaviour
                     List<Effect> comboParts = ComboParts(comboEffect);
                     printList("Combos parts: ", comboParts);
                     comboParts.Remove(effect);
-                    baseEffects.Add(comboParts[0]);
                     Debug.Log("Setting effect: " + comboParts[0]);
                     SetEffect(comboParts[0]);
                 }
