@@ -22,7 +22,10 @@ public class LightEffects : MonoBehaviour
         {
             case Effect.Speed:
             {
-                player.Speed += effectConstants.speed;
+                if (other.tag == "Player")
+                {
+                    player.Speed += effectConstants.speed;
+                }
                 break;
             }
             case Effect.NoGravity:
@@ -41,7 +44,10 @@ public class LightEffects : MonoBehaviour
         {
             case Effect.Speed:
             {
-                player.Speed -= effectConstants.speed;
+                if (other.tag == "Player")
+                {
+                    player.Speed -= effectConstants.speed;
+                }
                 break;
             }
             case Effect.NoGravity:
