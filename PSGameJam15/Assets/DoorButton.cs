@@ -2,28 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeButton : MonoBehaviour
+public class DoorButton : MonoBehaviour
 {
-    public Transform spawnPoint;
-    public GameObject cube;
-    public float cooldown = 2f;
-    public Vector2 speed;
+    public float cooldown = 4f;
+    public float doorOpenTime = 2f;
+    public Door door;
     private bool canPress;
     private bool onCooldown = false;
-    private GameObject spawnedCube;
 
     private void Update()
     {
         if (canPress && Input.GetKeyDown(KeyCode.E))
         {
-            if (spawnedCube != null)
-            {
-                Destroy(spawnedCube);
-            }
-            spawnedCube = Instantiate(cube, spawnPoint.position, Quaternion.identity);
-            spawnedCube.GetComponent<Rigidbody2D>().AddForce(speed);
-            onCooldown = true;
-            canPress = false;
+            door.OpenDoor();
+            Invoke("CloseDoor", doorOpenTime);
             Invoke("ResetCooldown", cooldown);
         }
     }
@@ -36,6 +28,11 @@ public class CubeButton : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         canPress = false;
+    }
+
+    private void CloseDoor()
+    {
+        door.CloseDoor();
     }
 
     private void ResetCooldown()
