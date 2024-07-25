@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DoorButton : Interactable
@@ -12,12 +13,16 @@ public class DoorButton : Interactable
     private bool onCooldown = false;
     private bool onButton = false;
 
+    [SerializeField] private AudioManager audioManager;
+
     private void Update()
     {
-        if (canPress && Input.GetKeyDown(KeyCode.E))
+        if (canPress && !onCooldown && Input.GetKeyDown(KeyCode.E))
         {
+            onCooldown = true;
             door.OpenDoor();
             base.Unhighlight();
+            audioManager.playButtonClick();
             Invoke("CloseDoor", doorOpenTime);
             Invoke("ResetCooldown", cooldown);
         }
@@ -25,9 +30,15 @@ public class DoorButton : Interactable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        base.Highlight();
         canPress = onCooldown ? false : true;
+        if (canPress)
+            base.Highlight();
         onButton = true;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        canPress = onCooldown ? false : true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

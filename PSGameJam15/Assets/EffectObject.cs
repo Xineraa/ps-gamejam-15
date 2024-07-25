@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static LightEffects;
+using static EffectConstants;
 
 public class EffectObject : MonoBehaviour
 {

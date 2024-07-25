@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
     [SerializeField] private Sprite doorOpen;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private BoxCollider2D trigger;
+    [SerializeField] private AudioManager audioManager;
 
     private SpriteRenderer doorRenderer;
     private bool shouldClose = false;
@@ -31,6 +32,7 @@ public class Door : MonoBehaviour
 
     public void OpenDoor()
     {
+        audioManager.playDoorEffect(true);
         boxCollider.enabled = false;
         doorRenderer.sprite = doorOpen;
     }
@@ -42,6 +44,7 @@ public class Door : MonoBehaviour
             shouldClose = true;
         } else
         {
+            audioManager.playDoorEffect(false);
             shouldClose = false;
             boxCollider.enabled = true;
             doorRenderer.sprite = doorClosed;

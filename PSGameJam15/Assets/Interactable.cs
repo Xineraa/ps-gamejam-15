@@ -8,7 +8,7 @@ public class Interactable : MonoBehaviour
     public Material defaultMat;
     public Material outlineMat;
 
-    public new SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
 
     private void Start()
     {
