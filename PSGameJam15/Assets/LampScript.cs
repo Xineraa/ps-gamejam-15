@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class LampScript : Interactable
         selectedEffect = hotbar.getCurrentEffect();
         if (selectedEffect != Effect.None)
         {
+            Debug.Log(selectedEffect);
             Highlight();
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {

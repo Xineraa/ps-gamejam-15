@@ -32,6 +32,7 @@ public class Hotbar : MonoBehaviour
                     if (slot != slots[i])
                         slot.setActive(false);
                 }
+                Debug.Log(currentEffect);
                 currentEffect = slots[i].getEffect();
             }
         }

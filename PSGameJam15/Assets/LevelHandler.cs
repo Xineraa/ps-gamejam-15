@@ -32,7 +32,7 @@ public class LevelHandler : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator DoFadeOut()
+    public IEnumerator DoFadeOut()
     {
         float alpha = blackScreen.color.a;
         while (blackScreen.color.a < 1)
