@@ -6,7 +6,6 @@ using static EffectConstants;
 public class Hotbar : MonoBehaviour
 {
 
-    public int SlotIndex;
     public Effect currentEffect = Effect.None;
 
     public Effect getCurrentEffect()
