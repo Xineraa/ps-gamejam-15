@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorClosed: {fileID: 21300000, guid: 457b6ce1f6dbef548a2eb34f5656cac2, type: 3}
   doorOpen: {fileID: 21300000, guid: d83365ec9c7c1704cb45015964f63e1e, type: 3}
-  boxCollider: {fileID: 0}
+  boxCollider: {fileID: 4755228001563803585}
   trigger: {fileID: 5690515054375829913}
   audioManager: {fileID: 6620199580674405588, guid: 0bec2adce83a0b2429c694c037876b1b, type: 3}
 --- !u!61 &4755228001563803585

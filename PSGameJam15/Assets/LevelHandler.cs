@@ -14,7 +14,10 @@ public class LevelHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(DoFadeOut(1));
+        if (collision.transform.tag == "Player")
+        {
+            StartCoroutine(DoFadeOut(1));
+        }
     }
 
     IEnumerator DoFadeIn()

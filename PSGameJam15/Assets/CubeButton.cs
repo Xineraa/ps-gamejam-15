@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeButton : MonoBehaviour
+public class CubeButton : Interactable
 {
     public Transform spawnPoint;
     public GameObject cube;
@@ -11,6 +11,7 @@ public class CubeButton : MonoBehaviour
     private bool canPress;
     private bool onCooldown = false;
     private GameObject spawnedCube;
+    [SerializeField] private AudioManager audioManager;
 
     private void Update()
     {
@@ -22,6 +23,7 @@ public class CubeButton : MonoBehaviour
             }
             spawnedCube = Instantiate(cube, spawnPoint.position, Quaternion.identity);
             spawnedCube.GetComponent<Rigidbody2D>().AddForce(speed);
+            audioManager.playButtonClick();
             onCooldown = true;
             canPress = false;
             Invoke("ResetCooldown", cooldown);
@@ -31,10 +33,13 @@ public class CubeButton : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         canPress = onCooldown ? false : true;
+        if (canPress)
+            base.Highlight();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        base.Unhighlight();
         canPress = false;
     }
 
