@@ -14,7 +14,7 @@ public class LevelHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(DoFadeOut());
+        StartCoroutine(DoFadeOut(1));
     }
 
     IEnumerator DoFadeIn()
@@ -32,7 +32,7 @@ public class LevelHandler : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerator DoFadeOut()
+    public IEnumerator DoFadeOut(int scene)
     {
         float alpha = blackScreen.color.a;
         while (blackScreen.color.a < 1)
@@ -43,7 +43,7 @@ public class LevelHandler : MonoBehaviour
             blackScreen.color = color;
             yield return null;
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + scene);
         yield return null;
     }
 }

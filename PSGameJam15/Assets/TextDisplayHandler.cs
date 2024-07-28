@@ -43,7 +43,7 @@ public class TextDisplayHandler : MonoBehaviour
         yield return new WaitForSeconds(2);
         if (index == texts.Count)
         {
-            StartCoroutine(levelHandler.DoFadeOut());
+            StartCoroutine(levelHandler.DoFadeOut(1));
         } else
         {
             StartCoroutine(ShowText(texts[index]));

@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
+    public LevelHandler LevelHandler;
 
     public float Speed = 30f;
     public float gravity = 1f;
@@ -27,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             Jump = true;
+        }
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            StartCoroutine(LevelHandler.DoFadeOut(0));
         }
     }
     void FixedUpdate()
