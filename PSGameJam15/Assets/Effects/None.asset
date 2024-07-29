@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: 0
   icon: {fileID: 0}
-  color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+  color: {r: 0.8626923, g: 0.8679245, b: 0.50356, a: 1}

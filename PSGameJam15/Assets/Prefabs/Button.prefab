@@ -143,6 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ae479698828194881e980c165c5214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  outlineMat: {fileID: 2100000, guid: cf7290ffa832aaa4c9325097636c8418, type: 2}
   spawnPoint: {fileID: 0}
   cube: {fileID: 6126110501205426328, guid: 177da6263fc7793418653f2d9020fea5, type: 3}
   cooldown: 2
+  speed: {x: 0, y: 0}
+  audioManager: {fileID: 0}

@@ -143,6 +143,10 @@ public class EffectObject : MonoBehaviour
         {
             comboEffectsActive.Add(Effect.JumpBoost);
         }
+        if (baseEffects.Contains(Effect.NoGravity) && baseEffects.Contains(Effect.None))
+        {
+            comboEffectsActive.Add(Effect.NoGravity);
+        }
         return comboEffectsActive;
     }
 
@@ -161,6 +165,10 @@ public class EffectObject : MonoBehaviour
             case Effect.JumpBoost:
                 {
                     return new List<Effect> { Effect.JumpBoost, Effect.None };
+                }
+            case Effect.NoGravity:
+                {
+                    return new List<Effect> { Effect.NoGravity, Effect.None };
                 }
 
         }
