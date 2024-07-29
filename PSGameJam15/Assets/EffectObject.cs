@@ -148,6 +148,14 @@ public class EffectObject : MonoBehaviour
         {
             comboEffectsActive.Add(Effect.SpeedJump);
         }
+        if (baseEffects.Contains(Effect.Speed) && baseEffects.Contains(Effect.None))
+        {
+            comboEffectsActive.Add(Effect.Speed);
+        }
+        if (baseEffects.Contains(Effect.JumpBoost) && baseEffects.Contains(Effect.None))
+        {
+            comboEffectsActive.Add(Effect.JumpBoost);
+        }
         return comboEffectsActive;
     }
 
@@ -163,6 +171,15 @@ public class EffectObject : MonoBehaviour
                 {
                     return new List<Effect> { Effect.Speed, Effect.JumpBoost };
                 }
+            case Effect.Speed:
+                {
+                    return new List<Effect> { Effect.Speed, Effect.None };
+                }
+            case Effect.JumpBoost:
+                {
+                    return new List<Effect> { Effect.JumpBoost, Effect.None };
+                }
+
         }
         return null;
     }
