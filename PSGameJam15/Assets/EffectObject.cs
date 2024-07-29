@@ -75,15 +75,6 @@ public class EffectObject : MonoBehaviour
                         gameObject.GetComponent<Rigidbody2D>().gravityScale = effectConstants.reverseGravity;
                         break;
                     }
-                case Effect.SpeedJump:
-                    {
-                        if (characterController != null & player != null)
-                        {
-                            player.Speed += effectConstants.speed;
-                            characterController.m_JumpForce = effectConstants.jumpBoost;
-                        }
-                    }
-                    break;
             }
         }
     }
@@ -144,10 +135,6 @@ public class EffectObject : MonoBehaviour
         {
             comboEffectsActive.Add(Effect.ReverseGravity);
         }
-        if (baseEffects.Contains(Effect.Speed) && baseEffects.Contains(Effect.JumpBoost))
-        {
-            comboEffectsActive.Add(Effect.SpeedJump);
-        }
         if (baseEffects.Contains(Effect.Speed) && baseEffects.Contains(Effect.None))
         {
             comboEffectsActive.Add(Effect.Speed);
@@ -166,10 +153,6 @@ public class EffectObject : MonoBehaviour
             case Effect.ReverseGravity:
                 {
                     return new List<Effect> { Effect.NoGravity, Effect.JumpBoost };
-                }
-            case Effect.SpeedJump:
-                {
-                    return new List<Effect> { Effect.Speed, Effect.JumpBoost };
                 }
             case Effect.Speed:
                 {
