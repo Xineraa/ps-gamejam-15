@@ -32,6 +32,7 @@ public class EffectConstants : MonoBehaviour
         NoGravity,
         JumpBoost,
         ReverseGravity,
+        Mini,
     }
 
     public static EffectInfo getEffectInfo(Effect effect)

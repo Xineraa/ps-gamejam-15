@@ -8,13 +8,47 @@ public class EffectObject : MonoBehaviour
     public PlayerMovement player;
     public EffectConstants effectConstants;
     public CharacterController2D characterController;
+    public Transform canGoBigCheck;
+    [SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
     private List<Effect> baseEffects;
     private List<Effect> comboEffects;
+    private bool mini = false;
+
+    const float k_GroundedRadius = .05f; // Radius of the overlap circle to determine if grounded
 
     private void Start()
     {
         baseEffects = new List<Effect>();
         comboEffects = new List<Effect>();
+    }
+
+    private void Update()
+    {
+        printList("Combo effects:", comboEffects);
+        if (mini && !comboEffects.Contains(Effect.Mini))
+        {
+            // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+            // This can be done using layers instead but Sample Assets will not overwrite your project settings.
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(canGoBigCheck.position, k_GroundedRadius, m_WhatIsGround);
+            bool canGoBig = true;
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].gameObject != gameObject)
+                {
+                    canGoBig = false;
+                }
+            }
+            if (canGoBig)
+            {
+                float sizeX = 1f;
+                if (characterController != null)
+                {
+                    sizeX = characterController.facingRight() ? 1f : -1f;
+                }
+                transform.localScale = new Vector3(sizeX, 1f, 0.2f);
+                mini = false;
+            }
+        }
     }
 
     public void SetEffect (Effect effect)
@@ -73,6 +107,17 @@ public class EffectObject : MonoBehaviour
                 case Effect.ReverseGravity:
                     {
                         gameObject.GetComponent<Rigidbody2D>().gravityScale = effectConstants.reverseGravity;
+                        break;
+                    }
+                case Effect.Mini:
+                    {
+                        float sizeX = 0.5f;
+                        if (characterController != null)
+                        {
+                            sizeX = characterController.facingRight() ? 0.5f : -0.5f;
+                        }
+                        transform.localScale = new Vector3(sizeX, 0.5f, 0.2f);
+                        mini = true;
                         break;
                     }
             }
@@ -135,6 +180,10 @@ public class EffectObject : MonoBehaviour
         {
             comboEffectsActive.Add(Effect.ReverseGravity);
         }
+        if (baseEffects.Contains(Effect.Speed) && baseEffects.Contains(Effect.JumpBoost))
+        {
+            comboEffectsActive.Add(Effect.Mini);
+        }
         if (baseEffects.Contains(Effect.Speed) && baseEffects.Contains(Effect.None))
         {
             comboEffectsActive.Add(Effect.Speed);
@@ -157,6 +206,10 @@ public class EffectObject : MonoBehaviour
             case Effect.ReverseGravity:
                 {
                     return new List<Effect> { Effect.NoGravity, Effect.JumpBoost };
+                }
+            case Effect.Mini:
+                {
+                    return new List<Effect> { Effect.Speed, Effect.JumpBoost };
                 }
             case Effect.Speed:
                 {
