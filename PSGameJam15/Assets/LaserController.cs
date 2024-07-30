@@ -8,11 +8,24 @@ public class LaserController : MonoBehaviour
     public Door door;
     [SerializeField] private GameObject LaserStart;
     [SerializeField] private GameObject LaserReceptor;
+    [SerializeField] private bool inverted = false;
     private bool hitting = false;
     // Start is called before the first frame update
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+    }
+
+    private void Start()
+    {
+        if (inverted)
+        {
+            door.OpenDoor();
+        }
+        else
+        {
+            door.CloseDoor();
+        }
     }
 
     // Update is called once per frame
@@ -23,12 +36,25 @@ public class LaserController : MonoBehaviour
         lineRenderer.SetPosition(1, hit.point);
         if (hit.collider.tag == "LaserReceptor" && !hitting)
         {
-            door.OpenDoor();
+            if (inverted)
+            {
+                door.CloseDoor();
+            } else
+            {
+                door.OpenDoor();
+            }
             hitting = true;
         }
         if (hit.collider.tag != "LaserReceptor")
         {
-            door.CloseDoor();
+            if (inverted)
+            {
+                door.OpenDoor();
+            }
+            else
+            {
+                door.CloseDoor();
+            }
             hitting = false;
         }
     }
