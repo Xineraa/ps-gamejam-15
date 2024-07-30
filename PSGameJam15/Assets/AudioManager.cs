@@ -10,11 +10,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource doorCloseSource;
     public AudioSource doorOpenSource;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-
     public void playLightEffect ()
     {
         lightEffectSource.Play();
