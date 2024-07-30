@@ -20,4 +20,31 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinishedLevels/Level 2.unity
     guid: 84c7295d1472a8e45b305d390d486090
+  - enabled: 1
+    path: Assets/Scenes/FinishedLevels/Level 3.unity
+    guid: 45f0dbdafa7d64e46961fd1e5bcf0798
+  - enabled: 1
+    path: Assets/Scenes/FinishedLevels/Level 4.unity
+    guid: d4a3a563096ec8b498bbeade5f69f9a4
+  - enabled: 1
+    path: Assets/Scenes/FinishedLevels/Level 5.unity
+    guid: caa4efd76ba570f44a53262e542faf40
+  - enabled: 1
+    path: Assets/Scenes/FinishedLevels/Level 6.unity
+    guid: 39b9f74b304ac2e4dbd8ae7f0bf019d2
+  - enabled: 1
+    path: Assets/Scenes/FinishedLevels/Level 8.unity
+    guid: 388ee54ae0f2a2d428f7d70739f8912d
+  - enabled: 1
+    path: Assets/Scenes/FinishedLevels/Level 10.unity
+    guid: a34192dc6cd38c14f9ebccb70b91d12b
+  - enabled: 1
+    path: Assets/Scenes/FinishedLevels/Level 11.unity
+    guid: f6a2167ad0aab45459ac7287657c973c
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: f3f0f8eed63ff004fa11c07b0fc45513
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: 01d4876a160ca9e45b30d343d195b3c7
   m_configObjects: {}
