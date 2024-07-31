@@ -12,6 +12,7 @@ public class EffectConstants : MonoBehaviour
     public float normalGravity = 1.0f;
     public float jumpBoost = 200.0f;
     public float defaultJumpHeight = 100f;
+    public float HighGravity = 1.5f;
 
     public EffectInfo[] effectInfos;
 
@@ -33,6 +34,7 @@ public class EffectConstants : MonoBehaviour
         JumpBoost,
         ReverseGravity,
         Mini,
+        HighGravity,
     }
 
     public static EffectInfo getEffectInfo(Effect effect)

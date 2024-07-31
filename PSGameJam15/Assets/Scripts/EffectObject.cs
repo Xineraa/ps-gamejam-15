@@ -120,6 +120,14 @@ public class EffectObject : MonoBehaviour
                         mini = true;
                         break;
                     }
+                case Effect.HighGravity:
+                    {
+                        if (gameObject != null)
+                        {
+                            gameObject.GetComponent<Rigidbody2D>().gravityScale = effectConstants.HighGravity;
+                        }
+                        break;
+                    }
             }
         }
     }
@@ -184,6 +192,10 @@ public class EffectObject : MonoBehaviour
         {
             comboEffectsActive.Add(Effect.Mini);
         }
+        if (baseEffects.Contains(Effect.NoGravity) && baseEffects.Contains(Effect.Speed))
+        {
+            comboEffectsActive.Add(Effect.HighGravity);
+        }
         if (baseEffects.Contains(Effect.Speed) && baseEffects.Contains(Effect.None))
         {
             comboEffectsActive.Add(Effect.Speed);
@@ -210,6 +222,10 @@ public class EffectObject : MonoBehaviour
             case Effect.Mini:
                 {
                     return new List<Effect> { Effect.Speed, Effect.JumpBoost };
+                }
+            case Effect.HighGravity:
+                {
+                    return new List<Effect> { Effect.NoGravity,  Effect.Speed };
                 }
             case Effect.Speed:
                 {
